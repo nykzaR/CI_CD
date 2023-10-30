@@ -12,9 +12,9 @@ pipeline {
         {
             steps {
                 script {
-                    if (fileExists('${WORKSPACE}/cli-s/')) 
+                    if (fileExists('${WORKSPACE}/cli-s')) 
                     {
-                        sh "cd cli-s"
+                        sh 'cd cli-s'
                     }
                     else
                     {
