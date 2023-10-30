@@ -8,9 +8,19 @@ pipeline {
                     branch: 'main'
             }
         }
-        stage('Clone the repository') {
+        stage ('Check 'cli-s' directory exists') 
+        {
             steps {
-                sh 'git clone https://github.com/Prozects/cli-s.git && cd cli-s'
+                script {
+                    if (fileExists('${WORKSPACE}/cli-s/')) 
+                    {
+                        sh "cd cli-s"
+                    }
+                    else
+                    {
+                        sh 'git clone https://github.com/Prozects/cli-s.git && cd cli-s'
+                    }
+                }
             }
         }
         stage('Execute the Script') {
