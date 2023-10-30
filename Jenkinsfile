@@ -8,7 +8,7 @@ pipeline {
                     branch: 'main'
             }
         }
-        stage ('Check 'cli-s' directory exists') 
+        stage ('Check the directory cli-s exists') 
         {
             steps {
                 script {
