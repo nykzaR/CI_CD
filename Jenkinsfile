@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Execute the Script') {
             steps {
-                sh 'packer validate ./az.json && packer build ./az.json'
+                sh 'packer validate az.json && packer build az.json'
             }
         }
     }
