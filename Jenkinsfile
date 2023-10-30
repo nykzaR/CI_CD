@@ -11,7 +11,7 @@ pipeline {
 
         stage('Execute the Script') {
             steps {
-                sh 'cd cli-s && packer validate az.json && packer build az.json'
+                sh 'packer validate az.json && packer build az.json'
             }
         }
     }
