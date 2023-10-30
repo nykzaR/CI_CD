@@ -1,0 +1,22 @@
+pipeline {
+    agent { label 'packer' }
+    triggers { pollSCM('* * * * *') }
+    stages {
+        stage('VCS') {
+            steps {
+                git url: 'https://github.com/nykzaR/CI_CD.git',
+                    branch: 'main'
+            }
+        }
+        stage('Configure Azure cli') {
+            steps {
+                sh 'sudo apt-get update && curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash'
+            }
+        }
+        stage('Execute the Script') {
+            steps {
+                sh 'packer validate aws.json && packer build aws.json'
+            }
+        }
+    }
+}    

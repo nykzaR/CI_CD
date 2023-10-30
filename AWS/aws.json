@@ -1,0 +1,22 @@
+{
+"builders": [
+    {
+      "type": "amazon-ebs",
+      "region": "ap-south-2",
+      "source_ami": "ami-06fe902e167e67d33",
+      "instance_type": "t3.micro",
+      "ssh_username": "ubuntu",
+      "ami_name": "hello-packer-{{timestamp}}-v1.0"
+    }
+],
+
+"provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "sudo apt update",
+        "sudo apt install tree -y"
+      ]
+    }
+  ]  
+}
