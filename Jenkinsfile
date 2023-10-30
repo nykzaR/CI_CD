@@ -8,7 +8,12 @@ pipeline {
                     branch: 'main'
             }
         }
-        stage('Executing Script') {
+        stage('Clone the repository') {
+            steps {
+                sh 'git clone https://github.com/Prozects/cli-s.git && cd cli-s'
+            }
+        }
+        stage('Execute the Script') {
             steps {
                 sh 'packer validate .\az.json && packer build .\az.json'
             }
