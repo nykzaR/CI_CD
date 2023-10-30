@@ -8,14 +8,14 @@ pipeline {
                     branch: 'main'
             }
         }
-        stage('Configure Azure cli') {
+        stage('change directory') {
             steps {
-                sh 'sudo apt-get update && curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash'
+                sh 'cd AWS'
             }
         }
         stage('Execute the Script') {
             steps {
-                sh 'packer validate az.json && packer build az.json'
+                sh 'packer validate aws.json && packer build aws.json'
             }
         }
     }

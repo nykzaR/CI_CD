@@ -1,0 +1,25 @@
+pipeline {
+    environment {
+        AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
+		AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+        }
+    agent { label '.net6.0core' }
+    triggers { pollSCM('* * * * *') }
+    stages {
+        stage('Install Azure cli') {
+            steps {
+                sh 'sudo apt-get update && curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash'
+            }
+        }
+        stage('Configure Azure cli') {
+            steps {
+                sh 'dotnet restore ./MusicStore/MusicStore.csproj && dotnet build ./MusicStore/MusicStore.csproj'
+            }
+        }
+        stage('Install Packer') {
+            steps {
+                sh 'dotnet restore ./MusicStore/MusicStore.csproj && dotnet build ./MusicStore/MusicStore.csproj'
+            }
+        }
+    }
+}
