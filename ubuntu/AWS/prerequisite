@@ -12,6 +12,11 @@ pipeline {
                 sh 'sudo apt-get update && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"'
             }
         }
+        stage('change directory') {
+            steps {
+                sh 'cd ubuntu/AWS/'
+            }
+        }
         // stage('Configure AWS cli') {
         //     steps {
         //         sh 'aws configure'
